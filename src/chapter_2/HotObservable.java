@@ -31,15 +31,14 @@ public class HotObservable extends Application {
         stage.show();
     }
 
-    private static <T> Observable<T> valuesOf(final
-                                              ObservableValue<T> fxObservable) {
+    private static <T> Observable<T> valuesOf(final ObservableValue<T> fxObservable) {
         return Observable.create(observableEmitter -> {
             //emit initial state
             observableEmitter.onNext(fxObservable.getValue());
             //emit value changes uses a listener
-            final ChangeListener<T> listener = (observableValue, prev,
-                                                current) -> observableEmitter.onNext(current);
+            final ChangeListener<T> listener = (observableValue, prev, current) -> observableEmitter.onNext(current);
             fxObservable.addListener(listener);
+            observableEmitter.setCancellable(() -> fxObservable.removeListener(listener));
         });
     }
 }
