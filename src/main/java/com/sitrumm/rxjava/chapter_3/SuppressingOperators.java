@@ -1,4 +1,4 @@
-package chapter_3;
+package com.sitrumm.rxjava.chapter_3;
 
 import io.reactivex.rxjava3.core.Observable;
 
