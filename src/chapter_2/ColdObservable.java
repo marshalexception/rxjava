@@ -1,3 +1,5 @@
+package chapter_2;
+
 import io.reactivex.rxjava3.core.Observable;
 
 public class ColdObservable {
